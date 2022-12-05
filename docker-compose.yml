@@ -19,7 +19,7 @@ services:
   frontend:
     image: 192.168.1.21:8082/deploy_module/front-modulo8:1.1.0
     ports:
-      - '80:80'
+      - '8080:80'
   # jenkins_slave:
   #   build: .
   #   volumes:
