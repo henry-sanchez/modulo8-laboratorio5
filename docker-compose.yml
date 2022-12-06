@@ -27,11 +27,11 @@ services:
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
   frontend:
-    image: 192.168.1.21:8082/deploy_module/front-modulo8:1.1.0
+    image: 192.168.0.9:8082/deploy_module/front-modulo8:1.1.0
     ports:
       - '80:80'
   backend:
-    image: 192.168.1.21:8082/deploy_module/back-modulo8:1.1.0
+    image: 192.168.0.9:8082/deploy_module/back-modulo8:1.1.0
     environment:
       ENV DB_URL: 'mongodb://mongo_admin_user:mongo_admin_password@0.0.0.0:27017'
       ENV DB_NAME: 'admin'
@@ -40,10 +40,6 @@ services:
     links:
       - mongo_local
     command: 'npm run dev'
-  # jenkins_slave:
-  #   build: .
-  #   volumes:
-  #     - './jenkins_slave:/usr/src/myapp'
 
 volumes:
   nexus-data: {}
