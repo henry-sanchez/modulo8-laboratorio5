@@ -15,11 +15,31 @@ services:
       - '8080:8080'
     volumes:
       - './jenkins-data:/var/jenkins_home'
-  
+  mongo_local:
+    image: mongo:4.4
+    container_name: mongo_local
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_admin_user
+      MONGO_INITDB_ROOT_PASSWORD: mongo_admin_pass
+      MONGO_INITDB_DB: admin
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
   frontend:
     image: 192.168.1.21:8082/deploy_module/front-modulo8:1.1.0
     ports:
-      - '8080:80'
+      - '80:80'
+  backend:
+    image: 192.168.1.21:8082/deploy_module/back-modulo8:1.1.0
+    environment:
+      ENV DB_URL: 'mongodb://mongo_admin_user:mongo_admin_password@0.0.0.0:27017'
+      ENV DB_NAME: 'admin'
+    ports:
+      - '4000:4000'
+    links:
+      - mongo_local
+    command: 'npm run dev'
   # jenkins_slave:
   #   build: .
   #   volumes:
