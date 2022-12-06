@@ -1,0 +1,54 @@
+Started by user henry sanchez
+Running as SYSTEM
+Building remotely on vm-debian-virtualbox (debian) in workspace /home/hsanchez/jenkins-data/workspace/labo5-docker-run
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /home/hsanchez/jenkins-data/workspace/labo5-docker-run/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/henry-sanchez/modulo8-laboratorio5.git # timeout=10
+Fetching upstream changes from https://github.com/henry-sanchez/modulo8-laboratorio5.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/henry-sanchez/modulo8-laboratorio5.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 6f56466be97ce4375abfc823a2fa0ced255c321d (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6f56466be97ce4375abfc823a2fa0ced255c321d # timeout=10
+Commit message: "se actualiza docker-compose"
+ > git rev-list --no-walk 6f56466be97ce4375abfc823a2fa0ced255c321d # timeout=10
+[labo5-docker-run] $ /bin/sh -xe /tmp/jenkins5435784632997360358.sh
++ groups
+hsanchez cdrom floppy audio dip video plugdev netdev bluetooth docker
++ docker-compose up -d mongo_local
+Starting mongo_local ... 
+[1A[2K
+Starting mongo_local ... [32mdone[0m
+[1B+ docker-compose up -d frontend
+Pulling frontend (192.168.0.9:8082/deploy_module/front-modulo8:1.1.0)...
+1.1.0: Pulling from deploy_module/front-modulo8
+Digest: sha256:86e088e9764c2dc55136765dc2a2e05c4877e9f4e986266a34e049ac9b90cd3d
+Status: Downloaded newer image for 192.168.0.9:8082/deploy_module/front-modulo8:1.1.0
+Recreating labo5-docker-run_frontend_1 ... 
+[1A[2K
+Recreating labo5-docker-run_frontend_1 ... [32mdone[0m
+[1B+ docker-compose up -d backend
+Pulling backend (192.168.0.9:8082/deploy_module/back-modulo8:1.1.0)...
+1.1.0: Pulling from deploy_module/back-modulo8
+Digest: sha256:9301a8d33bf442c274f6e4e5e5ebcb07d1001a417729121654a4e87edef3eff9
+Status: Downloaded newer image for 192.168.0.9:8082/deploy_module/back-modulo8:1.1.0
+mongo_local is up-to-date
+Creating labo5-docker-run_backend_1 ... 
+[1A[2K
+Creating labo5-docker-run_backend_1 ... [32mdone[0m
+[1B+ netstat -tpln
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:27017           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:45663         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:4000            0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+Finished: SUCCESS
